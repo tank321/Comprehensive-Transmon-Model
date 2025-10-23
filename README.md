@@ -159,22 +159,6 @@ Where T1_intrinsic ≈ 100 μs represents other decoherence mechanisms (dielectr
 
 **Implementation**: [T1_Calculation/plot gamma qp.py](T1_Calculation/plot gamma qp.py)
 
-### Key Physics Insights
-
-1. **Energy cascade efficiency**: Only ~0.0016% of the muon's deposited energy reaches the qubit, due to:
-   - Geometric spreading (1/R³ dilution)
-   - Acoustic impedance mismatch at Si/Al interface (T ≈ 0.02)
-   - Phonon energy filtering (only E > 2Δ contribute to pair-breaking)
-
-2. **Timescale hierarchy**:
-   - Phonon arrival: ~387 ns (ballistic propagation)
-   - Phonon escape: ~80 ns (thin film geometry)
-   - QP generation: ~1-10 ns (pair-breaking dynamics)
-   - QP relaxation: ~1 ms (trap-limited)
-   - Full T1 recovery: ~10-100 ms (governed by τ_trap)
-
-3. **Nonequilibrium dynamics**: The system exhibits a sharp QP burst (peak at ~400 ns) followed by slow exponential decay. The recombination term `R n_qp²` provides fast initial decay, but the bottleneck is the linear relaxation term `τ_trap`.
-
 ## Project Structure
 
 ```
@@ -220,32 +204,6 @@ All physical constants are defined in `constants.py`:
 ### Cosmic Ray Parameters
 - **Muon energy**: 2 GeV (typical)
 - **Incident angle**: 0° (normal incidence)
-
-## Key Results
-
-Running the complete pipeline produces the following key findings:
-
-### Energy Flow
-- **Energy deposited in Si**: ~0.074 MeV (74 keV)
-- **Energy transmitted to Al**: ~1.2 eV (0.0016% efficiency)
-- **Phonon arrival time**: ~387 ns
-- **Peak phonon density**: ~3.5×10¹⁵ m⁻³
-
-### Quasiparticle Dynamics
-- **Peak x_qp**: ~1.4×10⁻⁶ (enhancement of ~8.8× over equilibrium)
-- **Equilibrium x_qp**: 1.6×10⁻⁷
-- **QP relaxation**: Millisecond timescale
-
-### T1 Coherence Time
-- **Equilibrium T1**: 57.8 μs
-- **Minimum T1 (during burst)**: 13.5 μs
-- **Recovery times**:
-  - 90% recovery: 3.4 ms
-  - 95% recovery: 4.2 ms
-  - 99% recovery: 5.8 ms
-- **Full recovery**: ~100 ms
-
-These timescales match experimental observations of millisecond-scale T1 recovery in literature.
 
 ## Output Files
 
@@ -295,32 +253,7 @@ Required Python packages:
 - matplotlib
 - pickle (standard library)
 
-## References
-
-### Key Experimental Papers
-1. **Quasiparticle dynamics**: Martinis et al., *Nature Communications* **4**, 5836 (2014) — "Measurement and control of quasiparticle dynamics in a superconducting qubit" (source for τ_trap ≈ 1 ms)
-2. **T1 recovery timescales**: Cardani et al., *Nature Communications* **16**, 364 (2025) — "Methods to achieve near-millisecond energy relaxation times..."
-3. **QP pumping**: Aumentado et al., *Science* **355**, 6323 (2017) — "Suppressing relaxation in superconducting qubits by quasiparticle pumping"
-4. **Cosmic ray impacts**: Vepsäläinen et al., *Nature* **584**, 551-556 (2020) — "Impact of ionizing radiation on superconducting qubit coherence"
-
-### Theoretical Framework
-- **Energy loss**: Bethe-Bloch equation (Particle Data Group review)
-- **Phonon transport**: Ballistic phonon model with geometric factors (Kaplan et al.)
-- **Superconductor dynamics**: Rothwarf-Taylor equations, *Phys. Rev. Lett.* **26**, 1355 (1971)
-- **QP decoherence**: Catelani et al., *Phys. Rev. B* **84**, 064517 (2011)
-
-## Version History
-
-### October 2025
-**Major bug fixes** (critical for accurate T1 recovery):
-1. **x_qp normalization**: Fixed inconsistent normalization (factor of 4 vs 2) in `constants.py` that prevented T1 from recovering to equilibrium. Now uses correct factor of 2: `x_qp = n_qp / (2 N₀ Δ)`
-2. **τ_trap timescale**: Corrected quasiparticle relaxation time from 1 μs to 1 ms based on experimental literature (Nature Comm 4, 5836, 2014), yielding physically correct millisecond recovery times
-3. **Output improvements**: Enhanced terminal output and plots to clearly show T1 recovery metrics and progress
-
 ## License
 
 Generated with Claude Code (Anthropic)
 
-## Contact
-
-For questions or issues, please check the project documentation or constants.py for parameter definitions.
