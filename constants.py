@@ -3,10 +3,10 @@ Centralized Constants for Transmon Qubit Modeling
 
 This file contains all physical constants, material properties, and experimental
 parameters used across the four simulation modules:
-- Energy_Deposit: Bethe-Bloch muon energy deposition
-- Phonon_Dynamics: Ballistic phonon transport
-- RT_Equations: Rothwarf-Taylor equations
-- T1_Calculation: T1 coherence time calculations
+- energy_deposit: Bethe-Bloch muon energy deposition
+- phonon_dynamics: Ballistic phonon transport
+- rt_equations: Rothwarf-Taylor equations
+- t1_calculation: T1 coherence time calculations
 
 All values are in SI units unless otherwise specified.
 """
@@ -174,17 +174,17 @@ x_qp_burst_high = 1e-5  # High-level burst
 #==============================================================================
 # OUTPUT DIRECTORIES
 #==============================================================================
-dir_energy_deposit = 'Energy_Deposit'
-dir_phonon_dynamics = 'Phonon_Dynamics'
-dir_rt_equations = 'RT_Equations'
-dir_t1_calculation = 'T1_Calculation'
+dir_energy_deposit = 'energy_deposit'
+dir_phonon_dynamics = 'phonon_dynamics'
+dir_rt_equations = 'rt_equations'
+dir_t1_calculation = 't1_calculation'
 
 #==============================================================================
 # DATA FILE NAMES
 #==============================================================================
-file_energy_deposit = 'Energy_Deposit/energy_deposit_data.pkl'
-file_phonon_injection = 'Phonon_Dynamics/phonon_injection_data.pkl'
-file_xqp_vs_time = 'RT_Equations/xqp_vs_time_data.pkl'
+file_energy_deposit = 'energy_deposit/energy_deposit_data.pkl'
+file_phonon_injection = 'phonon_dynamics/phonon_injection_data.pkl'
+file_xqp_vs_time = 'rt_equations/xqp_vs_time_data.pkl'
 
 #==============================================================================
 # PLOT CONFIGURATION

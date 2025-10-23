@@ -66,7 +66,7 @@ try:
 
 except FileNotFoundError:
     print(f"X Energy deposit file not found: {energy_deposit_file}")
-    print("  Run 'Energy_Deposit/bethe.py' first to generate energy deposit data")
+    print("  Run 'energy_deposit/bethe.py' first to generate energy deposit data")
     print("  Using default values for demonstration...")
     E_deposited = 1e6 * e
     z_0 = 200e-6
@@ -330,7 +330,7 @@ fig.colorbar(im, ax=ax3, label='Log10(Peak Phonon Density [um^-3])')
 
 
 plt.tight_layout(pad=3.0)
-plt.savefig('Phonon_Dynamics/ballistic_phonon_flux_and_heatmap.png', dpi=300, bbox_inches='tight')
+plt.savefig('phonon_dynamics/ballistic_phonon_flux_and_heatmap.png', dpi=300, bbox_inches='tight')
 print("Saved: ballistic_phonon_flux_and_heatmap.png")
 
 # ============================================================================

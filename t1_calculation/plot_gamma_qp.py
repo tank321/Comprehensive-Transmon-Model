@@ -30,7 +30,7 @@ print("=" * 80)
 print("LOADING TIME-DEPENDENT x_qp(t) DATA")
 print("=" * 80)
 
-xqp_data_file = 'RT_Equations/xqp_vs_time_data.pkl'
+xqp_data_file = 'rt_equations/xqp_vs_time_data.pkl'
 try:
     with open(xqp_data_file, 'rb') as f:
         xqp_data = pickle.load(f)
@@ -400,7 +400,7 @@ if USE_TIME_DEPENDENT_DATA:
     print("=" * 80)
 
     # Load phonon injection data to get energy received by Al
-    phonon_data_file = 'Phonon_Dynamics/phonon_injection_data.pkl'
+    phonon_data_file = 'phonon_dynamics/phonon_injection_data.pkl'
     try:
         with open(phonon_data_file, 'rb') as f:
             phonon_data = pickle.load(f)

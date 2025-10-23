@@ -31,16 +31,16 @@ You can also run individual modules separately:
 
 ```bash
 # 1. Energy deposition (Bethe-Bloch)
-python "Energy_Deposit/bethe.py"
+python energy_deposit/bethe.py
 
 # 2. Phonon transport
-python "Phonon_Dynamics/Phonon Defusion Solver.py"
+python phonon_dynamics/phonon_diffusion_solver.py
 
 # 3. Quasiparticle dynamics (RT equations)
-python "RT_Equations/solve RT equations.py"
+python rt_equations/solve_rt_equations.py
 
 # 4. T1 calculation
-python "T1_Calculation/plot gamma qp.py"
+python t1_calculation/plot_gamma_qp.py
 ```
 
 **Note**: Modules must be run in order since later modules depend on data from earlier ones.
@@ -68,7 +68,7 @@ Where:
 
 **Landau fluctuations** are included to model stochastic variations in energy deposition, crucial for understanding the statistical distribution of cosmic ray impacts.
 
-**Implementation**: [Energy_Deposit/bethe.py](Energy_Deposit/bethe.py)
+**Implementation**: [energy_deposit/bethe.py](energy_deposit/bethe.py)
 
 ### 2. Phonon Transport: Ballistic Propagation
 
@@ -98,7 +98,7 @@ The phonon flux is integrated over the qubit area to obtain the **total phonon i
 Ṅ_phonon(t) = ∫∫_A_qubit Φ_phonon(x,y,t) dA / E_phonon
 ```
 
-**Implementation**: [Phonon_Dynamics/Phonon Defusion Solver.py](Phonon_Dynamics/Phonon Defusion Solver.py)
+**Implementation**: [phonon_dynamics/phonon_diffusion_solver.py](phonon_dynamics/phonon_diffusion_solver.py)
 
 ### 3. Quasiparticle Dynamics: Rothwarf-Taylor Equations
 
@@ -129,7 +129,7 @@ where N₀ = 1.74×10²⁸ eV⁻¹m⁻³ is the single-spin density of states at
 - x_qp_eq ≈ 1.6×10⁻⁷ (residual background)
 - n_qp_eq ≈ 1×10¹⁸ m⁻³ (≈ 1 QP per μm³)
 
-**Implementation**: [RT_Equations/solve RT equations.py](RT_Equations/solve RT equations.py) using `scipy.integrate.solve_ivp` with BDF method (for stiff ODEs).
+**Implementation**: [rt_equations/solve_rt_equations.py](rt_equations/solve_rt_equations.py) using `scipy.integrate.solve_ivp` with BDF method (for stiff ODEs).
 
 ### 4. Coherence Time: T1 Calculation
 
@@ -157,7 +157,7 @@ Where T1_intrinsic ≈ 100 μs represents other decoherence mechanisms (dielectr
 - **Peak burst**: Γ_qp_peak ≈ 64000 s⁻¹ → T1_min ≈ 13 μs
 - **Recovery timescale**: τ_recovery ≈ 3-6 ms (governed by τ_trap = 1 ms)
 
-**Implementation**: [T1_Calculation/plot gamma qp.py](T1_Calculation/plot gamma qp.py)
+**Implementation**: [t1_calculation/plot_gamma_qp.py](t1_calculation/plot_gamma_qp.py)
 
 ## Project Structure
 
@@ -165,17 +165,17 @@ Where T1_intrinsic ≈ 100 μs represents other decoherence mechanisms (dielectr
 Transmon_Model/
 ├── main.py                          # Main pipeline script (run this!)
 ├── constants.py                     # Centralized physical constants
-├── Energy_Deposit/
+├── energy_deposit/
 │   ├── bethe.py                    # Bethe-Bloch energy deposition
 │   └── energy_deposit_data.pkl     # Output: energy deposit data
-├── Phonon_Dynamics/
-│   ├── Phonon Defusion Solver.py   # Ballistic phonon transport
+├── phonon_dynamics/
+│   ├── phonon_diffusion_solver.py  # Ballistic phonon transport
 │   └── phonon_injection_data.pkl   # Output: phonon flux function
-├── RT_Equations/
-│   ├── solve RT equations.py       # Rothwarf-Taylor equations
+├── rt_equations/
+│   ├── solve_rt_equations.py       # Rothwarf-Taylor equations
 │   └── xqp_vs_time_data.pkl       # Output: quasiparticle density vs time
-└── T1_Calculation/
-    ├── plot gamma qp.py            # T1 coherence time calculation
+└── t1_calculation/
+    ├── plot_gamma_qp.py            # T1 coherence time calculation
     ├── T1_vs_time.png              # Output: T1 recovery plot
     └── xqp_and_T1_vs_time.png      # Output: combined QP and T1 plot
 ```
@@ -208,18 +208,18 @@ All physical constants are defined in `constants.py`:
 ## Output Files
 
 ### Data Files (.pkl)
-- `Energy_Deposit/energy_deposit_data.pkl`: Muon energy deposition results
-- `Phonon_Dynamics/phonon_injection_data.pkl`: Time-dependent phonon flux function
-- `RT_Equations/xqp_vs_time_data.pkl`: Quasiparticle density evolution
+- `energy_deposit/energy_deposit_data.pkl`: Muon energy deposition results
+- `phonon_dynamics/phonon_injection_data.pkl`: Time-dependent phonon flux function
+- `rt_equations/xqp_vs_time_data.pkl`: Quasiparticle density evolution
 
 ### Plots (.png)
-- `Energy_Deposit/energy_deposit_summary.png`: Bethe-Bloch results with Landau fluctuations
-- `Phonon_Dynamics/ballistic_phonon_flux_and_heatmap.png`: Spatial phonon distribution
-- `RT_Equations/RT_0D_with_phonon_injection.png`: QP and phonon population dynamics
-- `T1_Calculation/gamma_qp_plot.png`: Decay rate vs QP density
-- `T1_Calculation/gamma_qp_dual_axis.png`: Combined Γ_qp and T1 plot
-- `T1_Calculation/T1_vs_time.png`: T1 degradation and recovery
-- `T1_Calculation/xqp_and_T1_vs_time.png`: Correlation between x_qp(t) and T1(t)
+- `energy_deposit/energy_deposit_summary.png`: Bethe-Bloch results with Landau fluctuations
+- `phonon_dynamics/ballistic_phonon_flux_and_heatmap.png`: Spatial phonon distribution
+- `rt_equations/RT_0D_with_phonon_injection.png`: QP and phonon population dynamics
+- `t1_calculation/gamma_qp_plot.png`: Decay rate vs QP density
+- `t1_calculation/gamma_qp_dual_axis.png`: Combined Γ_qp and T1 plot
+- `t1_calculation/T1_vs_time.png`: T1 degradation and recovery
+- `t1_calculation/xqp_and_T1_vs_time.png`: Correlation between x_qp(t) and T1(t)
 
 ## Modifying Parameters
 

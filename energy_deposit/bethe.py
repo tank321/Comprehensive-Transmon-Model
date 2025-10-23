@@ -381,8 +381,8 @@ def plot_energy_deposit_summary(results):
         ax.axis('off')
 
     plt.tight_layout()
-    plt.savefig('Energy_Deposit/energy_deposit_summary.png', dpi=300, bbox_inches='tight')
-    print(f"\nSummary plot saved to: Energy_Deposit/energy_deposit_summary.png")
+    plt.savefig('energy_deposit/energy_deposit_summary.png', dpi=300, bbox_inches='tight')
+    print(f"\nSummary plot saved to: energy_deposit/energy_deposit_summary.png")
 
     return fig
 
